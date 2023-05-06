@@ -2,6 +2,7 @@ import datetime
 import string
 from unittest import TestCase
 
+import main
 from mpps import lib
 
 
@@ -29,8 +30,7 @@ class test_mpps(TestCase):
         self.assertEqual(lib.get_date_from_filename("Seesaw_25-05-2022-11.jpg"), datetime.date(2022, 5, 25))
 
     def test_get_target_folder(self):
-        target_folder_template = string.Template('X:\\Photos\\${year}\\${year}-${month}\\${year}-${month}-${day}_PhotosPhone')
         self.assertEqual(
-            lib.get_target_folder(target_folder_template, datetime.date(2022, 2, 1)),
-            'X:\\Photos\\2022\\2022-02\\2022-02-01_PhotosPhone'
+            lib.get_target_folder('/path/to/some/folder', main.target_folder_template, datetime.date(2022, 2, 1)),
+            '/path/to/some/folder/2022/2022-02/2022-02-01_PhotosPhone'
         )

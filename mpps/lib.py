@@ -61,11 +61,13 @@ def get_date_from_file(jpeg_path: str) -> date:
     return get_date_from_filename(os.path.basename(jpeg_path))
 
 
-def get_target_folder(target_folder_template: string.Template, photo_date: date) -> str:
-    if photo_date is None or target_folder_template is None:
+def get_target_folder(target_folder: string, target_folder_template: string.Template, photo_date: date) -> str:
+    if photo_date is None or target_folder_template is None or target_folder is None:
         return None
 
-    return target_folder_template.substitute(
+
+
+    return target_folder + '/' + target_folder_template.substitute(
         year=f'{photo_date.year:04}',
         month=f'{photo_date.month:02}',
         day=f'{photo_date.day:02}'
